@@ -39,12 +39,12 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-
         if(savedInstanceState != null) {
             System.out.println("NOT NULL");
             if (savedInstanceState.containsKey("name"))
                 System.out.println(savedInstanceState.getString("name"));
         }
+
         items = new String[200];
 
         name = (EditText) findViewById(R.id.editText6);
