@@ -25,14 +25,14 @@
         android:id="@+id/Instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="184dp"
         android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginBottom="400dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:text="Welcome to Food First!  Grocery Shopping made easy.  Simply choose the recipies you would like to cook, and a grocery list will be created for you containing all of the ingredients you need!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Title"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent" />
 
 
