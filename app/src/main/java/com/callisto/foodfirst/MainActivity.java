@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.chooseRecipe) {
            startActivity(new Intent(MainActivity.this, ChooseRecipeActivity.class));
         } else if (id == R.id.selectedRecipe) {
-            //startActivity(new Intent(MainActivity.this, ChooseRecipeActivity.class));
+            startActivity(new Intent(MainActivity.this, SelectedRecipeActivity.class));
         } else if (id == R.id.groceryList) {
-            //startActivity(new Intent(MainActivity.this, ChooseRecipeActivity.class));
+            startActivity(new Intent(MainActivity.this, GroceryListActivity.class));
 
         }
 
