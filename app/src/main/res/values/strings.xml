@@ -18,4 +18,9 @@
     <string name="soy">Soy</string>
     <string name="shelfish">Shelfish</string>
     <string name="new_ingreedient">New Ingreedient</string>
+    <string name="new_recipe">New Recipe</string>
+    <string name="add_description">Add Description</string>
+    <string name="name">Name</string>
+    <string name="add_ingreedients">Add Ingreedients</string>
+    <string name="search">Search</string>
 </resources>
