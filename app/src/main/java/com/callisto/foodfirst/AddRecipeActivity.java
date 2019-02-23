@@ -9,12 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-<<<<<<< HEAD
 import android.widget.TextView;
-
-=======
 import com.mongodb.BasicDBObject;
->>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -41,15 +37,13 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-<<<<<<< HEAD
+
         if(savedInstanceState != null) {
             System.out.println("NOT NULL");
             if (savedInstanceState.containsKey("name"))
                 System.out.println(savedInstanceState.getString("name"));
         }
-=======
         items = new String[200];
->>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
 
         name = (EditText) findViewById(R.id.editText6);
         description = (EditText) findViewById(R.id.editText7);
@@ -104,6 +98,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         doc.put( "name", name.getText().toString() );
         doc.put( "description", description.getText().toString() );
 
+        BasicDBObject ingredients = new BasicDBObject();
+
+
 
         collection.insertOne(doc);
         mongoClient.close();
@@ -116,12 +113,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onSaveInstanceState(state);
         state.putString("name", this.name.getText().toString());
         state.putString("description", this.description.getText().toString());
-<<<<<<< HEAD
         nameSave = this.name.getText().toString();
         desSave = this.description.getText().toString();
-=======
 
->>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
     }
 
 

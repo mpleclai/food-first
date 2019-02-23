@@ -113,18 +113,13 @@ public class AddIngredientActivity extends AppCompatActivity {
 
     public void addInformationToDatabse( View v) {
 
-<<<<<<< HEAD
-        MongoClientURI uri = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
-        MongoClient client = new MongoClient(uri);
-        MongoDatabase db = client.getDatabase(uri.getDatabase());
-        MongoCollection<Document> coll = db.getCollection("newDB");
-=======
+
         MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
         MongoClient mongoClient = new MongoClient(uri);
 
         MongoDatabase db = mongoClient.getDatabase("FoodFirst");
         MongoCollection<BasicDBObject> collection = db.getCollection("ingredients", BasicDBObject.class);
->>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
+
 
         position = spinner.getSelectedItemPosition();
 
@@ -156,27 +151,6 @@ public class AddIngredientActivity extends AppCompatActivity {
             halal = true;
         }
 
-<<<<<<< HEAD
-        Document doc = new Document("item", "ingredient")
-                .append("ingredient", ingredientText.getText().toString())
-                .append("amount", Double.valueOf(amountText.getText().toString()))
-                .append("measurement", String.valueOf(spinner.getSelectedItem()))
-                .append("calories", Integer.valueOf(caloriesText.getText().toString()))
-                .append("gluten", gluten)
-                .append("treeNut", treeNut)
-                .append("dairy", dairy)
-                .append("soy", soy)
-                .append("shellfish", shellfish)
-                .append("vegetarian", vegetarian)
-                .append("vegan", vegan)
-                .append("kosher", kosher)
-                .append("halal", halal);
-
-        coll.insertOne(doc);
-        client.close();
-=======
-        System.out.println( "Got past the if statements");
-
         BasicDBObject doc = new BasicDBObject();
         doc.put( "ingredient", ingredientText.getText().toString() );
         doc.put( "amount", Double.valueOf(amountText.getText().toString()) );
@@ -195,6 +169,5 @@ public class AddIngredientActivity extends AppCompatActivity {
         collection.insertOne(doc);
         mongoClient.close();
 
->>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
     }
 }

@@ -119,14 +119,8 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
-<<<<<<< HEAD
-                android:onClick="openAddIngriedientActivity"
-                android:text="Add New Ingredient"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
-=======
                 android:text="Add New Ingredient"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView"
->>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText7" />
