@@ -3,12 +3,11 @@ package com.callisto.foodfirst;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AddRecipeActivity extends AppCompatActivity {
+public class SelectedRecipeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_recipe);
+        setContentView(R.layout.activity_selected_recipe);
     }
-
 }
