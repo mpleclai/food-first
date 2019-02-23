@@ -16,6 +16,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
+
         button2 = (Button) findViewById(R.id.button2);
 
         button2.setOnClickListener( new View.OnClickListener() {

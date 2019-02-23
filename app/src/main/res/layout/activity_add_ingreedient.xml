@@ -190,17 +190,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingreedientText" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="154dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="74dp"
-        app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
-        app:layout_constraintEnd_toStartOf="@+id/caloriesText"
-        app:layout_constraintStart_toEndOf="@+id/amountText"
-        app:layout_constraintTop_toBottomOf="@+id/ingreedientText"/>
-
     <EditText
         android:id="@+id/amountText"
         android:layout_width="53dp"
@@ -209,14 +198,13 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="74dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="#"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingreedientText"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/ingreedientText" />
 
     <Button
         android:id="@+id/submit"
@@ -233,5 +221,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HalalCheckBox" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="153dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="196dp"
+        android:layout_marginBottom="98dp"
+        app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
+        app:layout_constraintEnd_toStartOf="@+id/caloriesText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/amountText"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -6,18 +6,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+
 import org.bson.Document;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddIngreedientActivity extends AppCompatActivity {
 
-    String measurement;
+    int position;
 
     boolean gluten = false;
     boolean treeNut = false;
@@ -42,6 +50,8 @@ public class AddIngreedientActivity extends AppCompatActivity {
     CheckBox VeganCheckBox;
     CheckBox KosherCheckBox;
     CheckBox HalalCheckBox;
+
+    Spinner spinner;
 
 
     Button submit;
@@ -72,6 +82,23 @@ public class AddIngreedientActivity extends AppCompatActivity {
         HalalCheckBox = (CheckBox) findViewById(R.id.HalalCheckBox);
 
         submit = (Button) findViewById(R.id.submit);
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        List<String> categories = new ArrayList<String>();
+        categories.add("Teaspoon");
+        categories.add("Tablespoon");
+        categories.add("Dry Cup");
+        categories.add("Liquid Cup");
+        categories.add("Ounce");
+        categories.add("Fluid Ounce");
+        categories.add("Liter");
+        categories.add("Other");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_item, categories);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(dataAdapter);
 
         submit.setOnClickListener( new View.OnClickListener() {
 
@@ -82,6 +109,8 @@ public class AddIngreedientActivity extends AppCompatActivity {
                 MongoClient client = new MongoClient(uri);
                 MongoDatabase db = client.getDatabase(uri.getDatabase());
                 MongoCollection<Document> coll = db.getCollection("newDB");
+
+                position = spinner.getSelectedItemPosition();
 
                 if( GlutenCheckBox.isChecked()) {
                     gluten = true;
@@ -114,6 +143,7 @@ public class AddIngreedientActivity extends AppCompatActivity {
                 Document doc = new Document()
                         .append( "ingreedient", ingreedientText.getText().toString() )
                         .append( "amount", Double.valueOf(amountText.getText().toString()) )
+                        .append( "measurement", String.valueOf(spinner.getSelectedItem()) )
                         .append( "calories", Integer.valueOf(caloriesText.getText().toString()) )
                         .append( "gluten", gluten )
                         .append( "treeNut", treeNut)
