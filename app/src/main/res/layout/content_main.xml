@@ -30,7 +30,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
-        android:text="Welcome to Food First!  Grocery Shopping made easy"
+        android:text="Welcome to Food First!  Grocery Shopping Made Easy"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
