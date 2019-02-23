@@ -116,8 +116,8 @@ public class AddIngredientActivity extends AppCompatActivity {
         MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
         MongoClient mongoClient = new MongoClient(uri);
 
-        MongoDatabase db = mongoClient.getDatabase(uri.getDatabase());
-        MongoCollection<BasicDBObject> collection = db.getCollection("ingredient", BasicDBObject.class);
+        MongoDatabase db = mongoClient.getDatabase("FoodFirst");
+        MongoCollection<BasicDBObject> collection = db.getCollection("ingredients", BasicDBObject.class);
 
         position = spinner.getSelectedItemPosition();
 

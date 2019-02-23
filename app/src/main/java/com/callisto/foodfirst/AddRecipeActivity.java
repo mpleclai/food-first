@@ -3,6 +3,7 @@ package com.callisto.foodfirst;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +13,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import org.bson.Document;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
@@ -25,11 +24,14 @@ public class AddRecipeActivity extends AppCompatActivity {
     Button submit;
 
     RecyclerView recycler;
+    String[] items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+
+        items = new String[200];
 
         name = (EditText) findViewById(R.id.editText6);
         description = (EditText) findViewById(R.id.editText7);
@@ -38,7 +40,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         newIngredient = (Button) findViewById(R.id.button2);
         submit = (Button) findViewById(R.id.button4);
 
-        recycler = (RecyclerView) findViewById(R.id.recyclerView3);
+        recycler = (RecyclerView) findViewById(R.id.recyclerView);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+        recycler.setAdapter(new Adapter(this, items));
 
         newIngredient.setOnClickListener( new View.OnClickListener() {
             // how to save information goes here
@@ -51,7 +55,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         submit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View k) {
-                //addInformationToDatabse( k );
+                addInformationToDatabse( k );
                 startActivity( new Intent( AddRecipeActivity.this, ChooseRecipeActivity.class));
 
             }
@@ -82,6 +86,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onSaveInstanceState(state);
         state.putString("name", this.name.getText().toString());
         state.putString("description", this.description.getText().toString());
+
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState){

@@ -25,4 +25,5 @@
     <string name="submit">SUBMIT</string>
     <string name="new_ingredient">New Ingredient</string>
     <string name="shellfish">Shellfish</string>
+    <string name="vegetarian">Vegetarian</string>
 </resources>
