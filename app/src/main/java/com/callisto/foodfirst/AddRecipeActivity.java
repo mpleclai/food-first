@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -52,29 +52,29 @@ public class AddRecipeActivity extends AppCompatActivity {
             @Override
             public void onClick(View k) {
                 //addInformationToDatabse( k );
-                openAddIngriedientActivity( k );
+                startActivity( new Intent( AddRecipeActivity.this, ChooseRecipeActivity.class));
 
             }
         });
 
     }
-    public void openAddIngriedientActivity( View v ) {
-        startActivity( new Intent( AddRecipeActivity.this, AddIngredientActivity.class));
-    }
+
     public void addInformationToDatabse( View k) {
 
         MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
-        MongoClient client = new MongoClient(uri);
-        MongoDatabase db = client.getDatabase(uri.getDatabase());
-        MongoCollection<Document> coll = db.getCollection("newDB");
+        MongoClient mongoClient = new MongoClient(uri);
 
-        Document doc = new Document( "item", "recipe")
-                .append( "name", name.getText().toString() )
-                .append( "description", description.getText().toString() );
+        MongoDatabase db = mongoClient.getDatabase(uri.getDatabase());
+        MongoCollection<BasicDBObject> collection = db.getCollection("recipe", BasicDBObject.class);
 
 
-        coll.insertOne(doc);
-        client.close();
+        BasicDBObject doc = new BasicDBObject();
+        doc.put( "name", name.getText().toString() );
+        doc.put( "description", description.getText().toString() );
+
+
+        collection.insertOne(doc);
+        mongoClient.close();
 
     }
 

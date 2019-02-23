@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 
 import org.bson.Document;
+
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -112,9 +114,10 @@ public class AddIngredientActivity extends AppCompatActivity {
     public void addInformationToDatabse( View v) {
 
         MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
-        MongoClient client = new MongoClient(uri);
-        MongoDatabase db = client.getDatabase(uri.getDatabase());
-        MongoCollection<Document> coll = db.getCollection("newDB");
+        MongoClient mongoClient = new MongoClient(uri);
+
+        MongoDatabase db = mongoClient.getDatabase(uri.getDatabase());
+        MongoCollection<BasicDBObject> collection = db.getCollection("ingredient", BasicDBObject.class);
 
         position = spinner.getSelectedItemPosition();
 
@@ -146,23 +149,25 @@ public class AddIngredientActivity extends AppCompatActivity {
             halal = true;
         }
 
-        Document doc = new Document( "item", "ingredient")
-                .append( "ingredient", ingredientText.getText().toString() )
-                .append( "amount", Double.valueOf(amountText.getText().toString()) )
-                .append( "measurement", String.valueOf(spinner.getSelectedItem()) )
-                .append( "calories", Integer.valueOf(caloriesText.getText().toString()) )
-                .append( "gluten", gluten )
-                .append( "treeNut", treeNut)
-                .append( "dairy", dairy )
-                .append( "soy", soy )
-                .append( "shellfish", shellfish )
-                .append( "vegetarian", vegetarian )
-                .append( "vegan", vegan )
-                .append( "kosher", kosher )
-                .append( "halal", halal );
+        System.out.println( "Got past the if statements");
 
-        coll.insertOne(doc);
-        client.close();
+        BasicDBObject doc = new BasicDBObject();
+        doc.put( "ingredient", ingredientText.getText().toString() );
+        doc.put( "amount", Double.valueOf(amountText.getText().toString()) );
+        doc.put( "measurement", String.valueOf(spinner.getSelectedItem()) );
+        doc.put( "calories", Integer.valueOf(caloriesText.getText().toString()) );
+        doc.put( "gluten", gluten );
+        doc.put( "treeNut", treeNut);
+        doc.put( "dairy", dairy );
+        doc.put( "soy", soy );
+        doc.put( "shellfish", shellfish );
+        doc.put( "vegetarian", vegetarian );
+        doc.put( "vegan", vegan );
+        doc.put( "kosher", kosher );
+        doc.put( "halal", halal );
+
+        collection.insertOne(doc);
+        mongoClient.close();
 
     }
 }
