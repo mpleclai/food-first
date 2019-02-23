@@ -22,7 +22,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         button2.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent( AddRecipeActivity.this, AddIngreedientActivity.class));
+                startActivity( new Intent( AddRecipeActivity.this, AddIngredientActivity.class));
             }
         });
     }

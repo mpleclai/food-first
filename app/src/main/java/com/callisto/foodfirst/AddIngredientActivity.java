@@ -6,13 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
 
 import org.bson.Document;
 import com.mongodb.MongoClient;
@@ -23,7 +21,7 @@ import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddIngreedientActivity extends AppCompatActivity {
+public class AddIngredientActivity extends AppCompatActivity {
 
     int position;
 
@@ -31,13 +29,13 @@ public class AddIngreedientActivity extends AppCompatActivity {
     boolean treeNut = false;
     boolean dairy = false;
     boolean soy = false;
-    boolean shelfish = false;
-    boolean vegitarian = false;
+    boolean shellfish = false;
+    boolean vegetarian = false;
     boolean vegan = false;
     boolean kosher = false;
     boolean halal = false;
 
-    EditText ingreedientText;
+    EditText ingredientText;
     EditText amountText;
     EditText caloriesText;
 
@@ -45,8 +43,8 @@ public class AddIngreedientActivity extends AppCompatActivity {
     CheckBox TreeNutCheckBox;
     CheckBox DairyCheckBox;
     CheckBox SoyCheckBox;
-    CheckBox ShelfishCheckBox;
-    CheckBox VegitarianCheckBox;
+    CheckBox ShellfishCheckBox;
+    CheckBox VegetarianCheckBox;
     CheckBox VeganCheckBox;
     CheckBox KosherCheckBox;
     CheckBox HalalCheckBox;
@@ -67,7 +65,7 @@ public class AddIngreedientActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        ingreedientText = (EditText) findViewById(R.id.ingreedientText);
+        ingredientText = (EditText) findViewById(R.id.ingreedientText);
         amountText = (EditText) findViewById(R.id.amountText);
         caloriesText = (EditText) findViewById(R.id.caloriesText);
 
@@ -75,8 +73,8 @@ public class AddIngreedientActivity extends AppCompatActivity {
         TreeNutCheckBox = (CheckBox) findViewById(R.id.TreeNutCheckBox);
         DairyCheckBox = (CheckBox) findViewById(R.id.DairyCheckBox);
         SoyCheckBox = (CheckBox) findViewById(R.id.SoyCheckBox);
-        ShelfishCheckBox = (CheckBox) findViewById(R.id.ShelfishCheckBox);
-        VegitarianCheckBox = (CheckBox) findViewById(R.id.VegitarianCheckBox);
+        ShellfishCheckBox = (CheckBox) findViewById(R.id.ShelfishCheckBox);
+        VegetarianCheckBox = (CheckBox) findViewById(R.id.VegitarianCheckBox);
         VeganCheckBox = (CheckBox) findViewById(R.id.VeganCheckBox);
         KosherCheckBox = (CheckBox) findViewById(R.id.KosherCheckBox);
         HalalCheckBox = (CheckBox) findViewById(R.id.HalalCheckBox);
@@ -124,11 +122,11 @@ public class AddIngreedientActivity extends AppCompatActivity {
                 if( SoyCheckBox.isChecked()) {
                     soy = true;
                 }
-                if( ShelfishCheckBox.isChecked()) {
-                    shelfish = true;
+                if( ShellfishCheckBox.isChecked()) {
+                    shellfish = true;
                 }
-                if( VegitarianCheckBox.isChecked()) {
-                    vegitarian = true;
+                if( VegetarianCheckBox.isChecked()) {
+                    vegetarian = true;
                 }
                 if( VeganCheckBox.isChecked()) {
                     vegan = true;
@@ -140,8 +138,8 @@ public class AddIngreedientActivity extends AppCompatActivity {
                     halal = true;
                 }
 
-                Document doc = new Document()
-                        .append( "ingreedient", ingreedientText.getText().toString() )
+                Document doc = new Document( "item", "ingredient")
+                        .append( "ingredient", ingredientText.getText().toString() )
                         .append( "amount", Double.valueOf(amountText.getText().toString()) )
                         .append( "measurement", String.valueOf(spinner.getSelectedItem()) )
                         .append( "calories", Integer.valueOf(caloriesText.getText().toString()) )
@@ -149,8 +147,8 @@ public class AddIngreedientActivity extends AppCompatActivity {
                         .append( "treeNut", treeNut)
                         .append( "dairy", dairy )
                         .append( "soy", soy )
-                        .append( "shelfish", shelfish )
-                        .append( "vegitarian", vegitarian )
+                        .append( "shellfish", shellfish )
+                        .append( "vegetarian", vegetarian )
                         .append( "vegan", vegan )
                         .append( "kosher", kosher )
                         .append( "halal", halal );

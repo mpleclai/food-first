@@ -23,4 +23,6 @@
     <string name="add_ingreedients">Add Ingreedients</string>
     <string name="search">Search</string>
     <string name="submit">SUBMIT</string>
+    <string name="new_ingredient">New Ingredient</string>
+    <string name="shellfish">Shellfish</string>
 </resources>
