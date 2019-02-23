@@ -1,12 +1,14 @@
 package com.callisto.foodfirst;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -17,12 +19,16 @@ import org.bson.Document;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
+    private static String nameSave;
+    private static String desSave;
+
     EditText name;
     EditText description;
     EditText instructions;
 
     Button newIngredient;
     Button submit;
+
 
     RecyclerView recycler;
 
@@ -31,9 +37,25 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
+        if(savedInstanceState != null) {
+            System.out.println("NOT NULL");
+            if (savedInstanceState.containsKey("name"))
+                System.out.println(savedInstanceState.getString("name"));
+        }
+
         name = (EditText) findViewById(R.id.editText6);
         description = (EditText) findViewById(R.id.editText7);
         instructions = (EditText) findViewById(R.id.editText9);
+
+
+        if(savedInstanceState != null){
+            System.out.println(savedInstanceState.getString("name"));
+            description.setText(savedInstanceState.getString("description"));
+        }
+
+        name.setText(nameSave);
+        description.setText(desSave);
+
 
         newIngredient = (Button) findViewById(R.id.button2);
         submit = (Button) findViewById(R.id.button4);
@@ -78,16 +100,16 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
     protected void onSaveInstanceState(Bundle state){
         super.onSaveInstanceState(state);
         state.putString("name", this.name.getText().toString());
         state.putString("description", this.description.getText().toString());
+        nameSave = this.name.getText().toString();
+        desSave = this.description.getText().toString();
     }
 
-    protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-      //  this.name = (EditText) savedInstanceState.getString("name");
-      //  this.description = (EditText) savedInstanceState.getSerializable("description");
-    }
+
 
 }

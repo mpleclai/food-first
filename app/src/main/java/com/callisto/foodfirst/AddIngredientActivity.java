@@ -111,58 +111,57 @@ public class AddIngredientActivity extends AppCompatActivity {
 
     public void addInformationToDatabse( View v) {
 
-        MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
+        MongoClientURI uri = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
         MongoClient client = new MongoClient(uri);
         MongoDatabase db = client.getDatabase(uri.getDatabase());
         MongoCollection<Document> coll = db.getCollection("newDB");
 
         position = spinner.getSelectedItemPosition();
 
-        if( GlutenCheckBox.isChecked()) {
+        if (GlutenCheckBox.isChecked()) {
             gluten = true;
         }
-        if( TreeNutCheckBox.isChecked()) {
+        if (TreeNutCheckBox.isChecked()) {
             treeNut = true;
         }
-        if( DairyCheckBox.isChecked()) {
+        if (DairyCheckBox.isChecked()) {
             dairy = true;
         }
-        if( SoyCheckBox.isChecked()) {
+        if (SoyCheckBox.isChecked()) {
             soy = true;
         }
-        if( ShellfishCheckBox.isChecked()) {
+        if (ShellfishCheckBox.isChecked()) {
             shellfish = true;
         }
-        if( VegetarianCheckBox.isChecked()) {
+        if (VegetarianCheckBox.isChecked()) {
             vegetarian = true;
         }
-        if( VeganCheckBox.isChecked()) {
+        if (VeganCheckBox.isChecked()) {
             vegan = true;
         }
-        if( KosherCheckBox.isChecked()) {
+        if (KosherCheckBox.isChecked()) {
             kosher = true;
         }
-        if( HalalCheckBox.isChecked()) {
+        if (HalalCheckBox.isChecked()) {
             halal = true;
         }
 
-        Document doc = new Document( "item", "ingredient")
-                .append( "ingredient", ingredientText.getText().toString() )
-                .append( "amount", Double.valueOf(amountText.getText().toString()) )
-                .append( "measurement", String.valueOf(spinner.getSelectedItem()) )
-                .append( "calories", Integer.valueOf(caloriesText.getText().toString()) )
-                .append( "gluten", gluten )
-                .append( "treeNut", treeNut)
-                .append( "dairy", dairy )
-                .append( "soy", soy )
-                .append( "shellfish", shellfish )
-                .append( "vegetarian", vegetarian )
-                .append( "vegan", vegan )
-                .append( "kosher", kosher )
-                .append( "halal", halal );
+        Document doc = new Document("item", "ingredient")
+                .append("ingredient", ingredientText.getText().toString())
+                .append("amount", Double.valueOf(amountText.getText().toString()))
+                .append("measurement", String.valueOf(spinner.getSelectedItem()))
+                .append("calories", Integer.valueOf(caloriesText.getText().toString()))
+                .append("gluten", gluten)
+                .append("treeNut", treeNut)
+                .append("dairy", dairy)
+                .append("soy", soy)
+                .append("shellfish", shellfish)
+                .append("vegetarian", vegetarian)
+                .append("vegan", vegan)
+                .append("kosher", kosher)
+                .append("halal", halal);
 
         coll.insertOne(doc);
         client.close();
-
     }
 }
