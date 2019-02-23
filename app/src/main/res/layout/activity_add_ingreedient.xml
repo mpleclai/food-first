@@ -7,7 +7,7 @@
     tools:context=".AddIngreedientActivity">
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/GlutenCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -16,14 +16,14 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/gluten"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+        app:layout_constraintBottom_toTopOf="@+id/TreeNutCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingreedientText"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/VegitarianCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -31,13 +31,13 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/vegitarian"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+        app:layout_constraintBottom_toTopOf="@+id/VeganCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
+        app:layout_constraintTop_toBottomOf="@+id/ShelfishCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/VeganCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -45,13 +45,13 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/vegan"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox4"
+        app:layout_constraintBottom_toTopOf="@+id/KosherCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/VegitarianCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/KosherCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -59,10 +59,10 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/kosher"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox7"
+        app:layout_constraintBottom_toTopOf="@+id/HalalCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintTop_toBottomOf="@+id/VeganCheckBox" />
 
     <EditText
         android:id="@+id/ingreedientText"
@@ -77,14 +77,15 @@
         android:ems="10"
         android:hint="name "
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/DairyCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -92,13 +93,13 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/dairy"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox8"
+        app:layout_constraintBottom_toTopOf="@+id/SoyCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+        app:layout_constraintTop_toBottomOf="@+id/TreeNutCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/TreeNutCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -106,13 +107,14 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/tree_nut"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+        app:layout_constraintBottom_toTopOf="@+id/DairyCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/GlutenCheckBox"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/HalalCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -124,10 +126,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+        app:layout_constraintTop_toBottomOf="@+id/KosherCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox8"
+        android:id="@+id/SoyCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -135,13 +137,13 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/soy"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox9"
+        app:layout_constraintBottom_toTopOf="@+id/ShelfishCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
+        app:layout_constraintTop_toBottomOf="@+id/DairyCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox9"
+        android:id="@+id/ShelfishCheckBox"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginStart="65dp"
@@ -149,10 +151,10 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:text="@string/shelfish"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox2"
+        app:layout_constraintBottom_toTopOf="@+id/VegitarianCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+        app:layout_constraintTop_toBottomOf="@+id/SoyCheckBox" />
 
     <TextView
         android:id="@+id/textView2"
@@ -182,7 +184,7 @@
         android:ems="10"
         android:hint="calories"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +196,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="74dp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
         app:layout_constraintEnd_toStartOf="@+id/caloriesText"
         app:layout_constraintStart_toEndOf="@+id/amountText"
         app:layout_constraintTop_toBottomOf="@+id/ingreedientText"/>
@@ -210,17 +212,26 @@
         android:ems="10"
         android:hint="#"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
         app:layout_constraintEnd_toStartOf="@+id/scrollView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingreedientText" />
+        app:layout_constraintTop_toBottomOf="@+id/ingreedientText"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SUBMIT"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="650dp" />
+        android:layout_marginStart="161dp"
+        android:layout_marginLeft="161dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginRight="162dp"
+        android:layout_marginBottom="33dp"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HalalCheckBox" />
 
 </android.support.constraint.ConstraintLayout>
