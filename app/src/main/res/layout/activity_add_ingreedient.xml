@@ -81,7 +81,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <CheckBox
         android:id="@+id/DairyCheckBox"
@@ -214,14 +215,23 @@
         app:layout_constraintBottom_toTopOf="@+id/GlutenCheckBox"
         app:layout_constraintEnd_toStartOf="@+id/scrollView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingreedientText" />
+        app:layout_constraintTop_toBottomOf="@+id/ingreedientText"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SUBMIT"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="650dp" />
+        android:layout_marginStart="161dp"
+        android:layout_marginLeft="161dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginRight="162dp"
+        android:layout_marginBottom="33dp"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HalalCheckBox" />
 
 </android.support.constraint.ConstraintLayout>
