@@ -24,9 +24,13 @@ public class ChooseRecipeActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent( ChooseRecipeActivity.this, AddRecipeActivity.class));
+                openAddRecipeActivity( view );
             }
         });
+    }
+
+    public void openAddRecipeActivity( View v) {
+        startActivity( new Intent( ChooseRecipeActivity.this, AddRecipeActivity.class));
     }
 
 }

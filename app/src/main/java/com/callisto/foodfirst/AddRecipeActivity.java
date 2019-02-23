@@ -23,11 +23,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-
         newIngredient = (Button) findViewById(R.id.button2);
-        recycler = (RecyclerView) findViewById(R.id.recyclerView3);
-
-
         newIngredient.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,12 +32,6 @@ public class AddRecipeActivity extends AppCompatActivity {
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View k) {
-
-            }
-        });
     }
 
 }
