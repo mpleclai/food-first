@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SelectedRecipeActivity"></activity>
         <activity android:name=".GroceryListActivity" />
-        <activity android:name=".AddIngreedientActivity" />
+        <activity android:name=".AddIngredientActivity" />
         <activity android:name=".AddRecipeActivity" />
         <activity
             android:name=".MainActivity"
