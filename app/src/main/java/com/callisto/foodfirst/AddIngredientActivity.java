@@ -1,5 +1,6 @@
 package com.callisto.foodfirst;
 
+import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -155,6 +156,8 @@ public class AddIngredientActivity extends AppCompatActivity {
 
                 coll.insertOne(doc);
                 client.close();
+
+                startActivity( new Intent( AddIngredientActivity.this, AddRecipeActivity.class));
             }
         });
     }
