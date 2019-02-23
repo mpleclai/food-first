@@ -27,6 +27,7 @@ import java.util.List;
 public class AddIngredientActivity extends AppCompatActivity {
 
     int position;
+    String id;
 
 
     boolean gluten = false;
