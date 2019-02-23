@@ -103,7 +103,7 @@ public class AddIngredientActivity extends AppCompatActivity {
             // add send receive data here
             @Override
             public void onClick( View v ) {
-                addInformationToDatabse( v );
+//                addInformationToDatabse( v );
                 startActivity( new Intent( AddIngredientActivity.this, AddRecipeActivity.class));
             }
         });
