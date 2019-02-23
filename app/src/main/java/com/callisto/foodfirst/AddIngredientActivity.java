@@ -28,6 +28,7 @@ public class AddIngredientActivity extends AppCompatActivity {
 
     int position;
 
+
     boolean gluten = false;
     boolean treeNut = false;
     boolean dairy = false;
