@@ -29,6 +29,8 @@ public class ChooseRecipeActivity extends AppCompatActivity {
         });
     }
 
+
+
     public void openAddRecipeActivity( View v) {
         startActivity( new Intent( ChooseRecipeActivity.this, AddRecipeActivity.class));
     }
