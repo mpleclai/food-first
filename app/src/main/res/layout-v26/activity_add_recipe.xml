@@ -53,7 +53,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/button4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView3"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView"
                 app:layout_constraintVertical_chainStyle="spread_inside" />
 
             <TextView
@@ -119,17 +119,22 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
+<<<<<<< HEAD
                 android:onClick="openAddIngriedientActivity"
                 android:text="Add New Ingredient"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
+=======
+                android:text="Add New Ingredient"
+                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+>>>>>>> 0423cf5799d9729d7af2724e3753845918787b91
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView3"
-                android:layout_width="220dp"
-                android:layout_height="187dp"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="5dp"
