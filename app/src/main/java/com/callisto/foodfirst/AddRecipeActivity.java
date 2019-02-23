@@ -78,4 +78,16 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     }
 
+    protected void onSaveInstanceState(Bundle state){
+        super.onSaveInstanceState(state);
+        state.putString("name", this.name.getText().toString());
+        state.putString("description", this.description.getText().toString());
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+      //  this.name = (EditText) savedInstanceState.getString("name");
+      //  this.description = (EditText) savedInstanceState.getSerializable("description");
+    }
+
 }
