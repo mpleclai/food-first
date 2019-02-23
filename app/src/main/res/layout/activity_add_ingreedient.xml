@@ -9,32 +9,82 @@
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="280dp"
-        android:layout_height="51dp"
+        android:layout_height="40dp"
         android:text="Gluten"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="247dp" />
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="260dp" />
 
     <CheckBox
         android:id="@+id/checkBox2"
-        android:layout_width="278dp"
-        android:layout_height="48dp"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
         android:text="Vegitarian"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="316dp" />
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="460dp" />
 
     <CheckBox
         android:id="@+id/checkBox3"
-        android:layout_width="274dp"
-        android:layout_height="44dp"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
         android:text="Vegan"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="385dp" />
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="500dp" />
 
     <CheckBox
         android:id="@+id/checkBox4"
-        android:layout_width="272dp"
-        android:layout_height="48dp"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
         android:text="Kosher"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="455dp" />
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="540dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="125dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:text="Dairy"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="340dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:text="Tree Nut"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox7"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:text="Halal"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="580dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox8"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:text="Soy"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="380dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox9"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:text="Shelfish"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="420dp" />
 </android.support.constraint.ConstraintLayout>
