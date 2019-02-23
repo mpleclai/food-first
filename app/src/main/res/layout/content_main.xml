@@ -11,6 +11,7 @@
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
+<<<<<<< HEAD
         android:layout_height="62dp"
         android:text="Food First"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -34,5 +35,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Title"
         app:layout_constraintStart_toStartOf="parent" />
+=======
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="247dp" />
+>>>>>>> 02573cd0641bc8ab15a1ceeca71edd81d5d14185
 
 </android.support.constraint.ConstraintLayout>
