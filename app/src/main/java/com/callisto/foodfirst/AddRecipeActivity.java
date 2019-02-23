@@ -16,10 +16,13 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import org.bson.types.ObjectId;
+
 public class AddRecipeActivity extends AppCompatActivity {
 
     private static String nameSave;
     private static String desSave;
+    private static ObjectId id;
 
     EditText name;
     EditText description;
@@ -91,18 +94,18 @@ public class AddRecipeActivity extends AppCompatActivity {
         MongoClient mongoClient = new MongoClient(uri);
 
         MongoDatabase db = mongoClient.getDatabase(uri.getDatabase());
-        MongoCollection<BasicDBObject> collection = db.getCollection("recipe", BasicDBObject.class);
+        MongoCollection<BasicDBObject> recipes = db.getCollection("recipes", BasicDBObject.class);
+        MongoCollection<BasicDBObject>  contains = db.getCollection("rcontains", BasicDBObject.class);
+
+        BasicDBObject recipe = new BasicDBObject();
+        recipe.put( "name", name.getText().toString() );
+        recipe.put( "description", description.getText().toString() );
+
+        BasicDBObject contain = new BasicDBObject();
 
 
-        BasicDBObject doc = new BasicDBObject();
-        doc.put( "name", name.getText().toString() );
-        doc.put( "description", description.getText().toString() );
-
-        BasicDBObject ingredients = new BasicDBObject();
-
-
-
-        collection.insertOne(doc);
+        recipes.insertOne(recipe);
+        contains.insertOne(contain);
         mongoClient.close();
 
     }

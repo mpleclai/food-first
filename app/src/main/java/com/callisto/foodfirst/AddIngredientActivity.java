@@ -13,13 +13,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 
-import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ import java.util.List;
 public class AddIngredientActivity extends AppCompatActivity {
 
     int position;
-    String id;
+    ObjectId  id;
 
 
     boolean gluten = false;
@@ -93,6 +96,7 @@ public class AddIngredientActivity extends AppCompatActivity {
         categories.add("Dry Cup");
         categories.add("Liquid Cup");
         categories.add("Ounce");
+        categories.add("Gram");
         categories.add("Fluid Ounce");
         categories.add("Liter");
         categories.add("Other");
@@ -169,6 +173,15 @@ public class AddIngredientActivity extends AppCompatActivity {
         doc.put( "halal", halal );
 
         collection.insertOne(doc);
+
+        BasicDBObject filter = new BasicDBObject("visit", new ObjectId());
+
+
+        FindOneAndUpdateOptions findOneAndUpdateOptions = new FindOneAndUpdateOptions();
+        findOneAndUpdateOptions.projection(Projections.include("_id"));
+        id  =  collection.findOneAndUpdate(filter, doc, findOneAndUpdateOptions).getObjectId("_id");
+
+        System.out.println( id );
         mongoClient.close();
 
     }
