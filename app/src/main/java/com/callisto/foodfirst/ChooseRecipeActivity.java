@@ -1,5 +1,6 @@
 package com.callisto.foodfirst;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,24 +32,32 @@ public class ChooseRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        if( Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-        StrictMode.setThreadPolicy(policy);
+            StrictMode.setThreadPolicy(policy);
+        }
 
         MongoClientURI uri = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
         MongoClient client = new MongoClient(uri);
-        MongoDatabase db = client.getDatabase(uri.getDatabase());
-        MongoCollection<BasicDBObject> recipe = db.getCollection("recipes", BasicDBObject.class);
+        try {
+            MongoDatabase db = client.getDatabase(uri.getDatabase());
+            MongoCollection<BasicDBObject> recipe = db.getCollection("recipes", BasicDBObject.class);
 
-        Block<BasicDBObject> block = new Block<BasicDBObject>(){
-            public void apply(final BasicDBObject document) {
-                System.out.println(document.toString());
-            }
-        };
+            Block<BasicDBObject> block = new Block<BasicDBObject>() {
+                public void apply(final BasicDBObject document) {
+                    System.out.println(document.toString());
+                }
+            };
 
-        recipe.find(eq("selected", true)).forEach(block);
+            recipe.find(eq("selected", true)).forEach(block);
 
-        //recipe.find(eq("selected",true));
+            //recipe.find(eq("selected",true));
+        } catch (Exception e ) {
+            e.printStackTrace();
+        } finally {
+            client.close();
+        }
 
         setContentView(R.layout.activity_choose_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -62,7 +71,6 @@ public class ChooseRecipeActivity extends AppCompatActivity {
                 openAddRecipeActivity( view );
             }
         });
-        client.close();
     }
 
 
