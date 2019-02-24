@@ -1,9 +1,6 @@
 package com.callisto.foodfirst;
 
 import android.content.Intent;
-import android.provider.Settings;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -14,16 +11,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Projections;
-import com.mongodb.client.model.FindOneAndUpdateOptions;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,20 +109,20 @@ public class AddIngredientActivity extends AppCompatActivity {
             // add send receive data here
             @Override
             public void onClick( View v ) {
-//                addInformationToDatabse( v );
+                addInformationToDatabase( v );
                 startActivity( new Intent( AddIngredientActivity.this, AddRecipeActivity.class));
             }
         });
     }
 
-    public void addInformationToDatabse( View v) {
+    public void addInformationToDatabase( View v) {
 
 
         MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
         MongoClient mongoClient = new MongoClient(uri);
 
         MongoDatabase db = mongoClient.getDatabase("FoodFirst");
-        MongoCollection<BasicDBObject> collection = db.getCollection("ingredients", BasicDBObject.class);
+        MongoCollection<Document> collection = db.getCollection("ingredients", Document.class);
 
 
         position = spinner.getSelectedItemPosition();
@@ -161,31 +155,23 @@ public class AddIngredientActivity extends AppCompatActivity {
             halal = true;
         }
 
-        BasicDBObject doc = new BasicDBObject();
-        doc.put( "ingredient", ingredientText.getText().toString() );
-        doc.put( "amount", Double.valueOf(amountText.getText().toString()) );
-        doc.put( "measurement", String.valueOf(spinner.getSelectedItem()) );
-        doc.put( "calories", Integer.valueOf(caloriesText.getText().toString()) );
-        doc.put( "gluten", gluten );
-        doc.put( "treeNut", treeNut);
-        doc.put( "dairy", dairy );
-        doc.put( "soy", soy );
-        doc.put( "shellfish", shellfish );
-        doc.put( "vegetarian", vegetarian );
-        doc.put( "vegan", vegan );
-        doc.put( "kosher", kosher );
-        doc.put( "halal", halal );
+        Document doc = new Document("ingredient", ingredientText.getText().toString() )
+                .append( "amount", Double.valueOf( amountText.getText().toString()) )
+                .append( "measurement", String.valueOf(spinner.getSelectedItem()) )
+                .append( "calories", Integer.valueOf(caloriesText.getText().toString()) )
+                .append( "gluten", gluten )
+                .append( "treeNut", treeNut)
+                .append( "dairy", dairy )
+                .append( "soy", soy )
+                .append( "shellfish", shellfish )
+                .append( "vegetarian", vegetarian )
+                .append( "vegan", vegan )
+                .append( "kosher", kosher )
+                .append( "halal", halal );
 
         collection.insertOne(doc);
 
-        BasicDBObject filter = new BasicDBObject("visit", new ObjectId());
-
-
-        FindOneAndUpdateOptions findOneAndUpdateOptions = new FindOneAndUpdateOptions();
-        findOneAndUpdateOptions.projection(Projections.include("_id"));
-        id  =  collection.findOneAndUpdate(filter, doc, findOneAndUpdateOptions).getObjectId("_id");
-
-        System.out.println( id );
+        id  = (ObjectId)doc.get( "_id" );
         mongoClient.close();
 
     }

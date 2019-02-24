@@ -1,6 +1,7 @@
 package com.callisto.foodfirst;
 
 import android.content.Intent;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,21 +11,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.BasicDBObject;
 
+
+
+import org.bson.Document;
 import org.bson.types.ObjectId;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class AddRecipeActivity extends AppCompatActivity {
 
+    int numberOfIngreedients = 0;
+    int numberOfItems = 0;
+
     private static String nameSave;
     private static String desSave;
-    private static ObjectId id;
+    private static ObjectId id;                     // recipe id
 
-    ObjectId myLocalID = AddIngredientActivity.id;
+    ObjectId myLocalID = AddIngredientActivity.id;  // ingredient id
 
     EditText name;
     EditText description;
@@ -36,6 +45,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     RecyclerView recycler;
     String[] items;
+    ObjectId[] ingredientIDs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +58,12 @@ public class AddRecipeActivity extends AppCompatActivity {
                 System.out.println(savedInstanceState.getString("name"));
         }
 
-        items = new String[200];
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+
+        items = new String[15];
+        ingredientIDs = new ObjectId[15];
 
         name = (EditText) findViewById(R.id.editText6);
         description = (EditText) findViewById(R.id.editText7);
@@ -65,7 +80,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
 
         newIngredient = (Button) findViewById(R.id.button2);
-        submit = (Button) findViewById(R.id.button4);
+        submit = (Button) findViewById(R.id.button3);
 
         recycler = (RecyclerView) findViewById(R.id.recyclerView);
         recycler.setLayoutManager(new LinearLayoutManager(this));
@@ -75,7 +90,23 @@ public class AddRecipeActivity extends AppCompatActivity {
             // how to save information goes here
             @Override
             public void onClick(View v) {
+                MongoClientURI uri  = new MongoClientURI("mongodb://ajerdman:FoodFirst10072@foodfirst-shard-00-00-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-01-aarbi.azure.mongodb.net:27017,foodfirst-shard-00-02-aarbi.azure.mongodb.net:27017/test?ssl=true&replicaSet=FoodFirst-shard-0&authSource=admin&retryWrites=true");
+                MongoClient mongoClient = new MongoClient(uri);
+                MongoDatabase db = mongoClient.getDatabase(uri.getDatabase());
+
+                MongoCollection<Document> ingredients = db.getCollection("ingredients");
                 startActivity( new Intent( AddRecipeActivity.this, AddIngredientActivity.class));
+                ingredientIDs[numberOfIngreedients] = myLocalID;
+                numberOfIngreedients++;
+
+                MongoCollection<Document> myCollection = db.getCollection("myCollection");
+                Document document = myCollection.find(eq("_id", new ObjectId("4f693d40e4b04cde19f17205"))).first();
+                if (document == null) {
+                    //Document does not exist
+                } else {
+                    items[numberOfItems] = document.get("ingredient").toString();
+                }
+                mongoClient.close();
 
             }
         });
@@ -96,15 +127,25 @@ public class AddRecipeActivity extends AppCompatActivity {
         MongoClient mongoClient = new MongoClient(uri);
 
         MongoDatabase db = mongoClient.getDatabase(uri.getDatabase());
-        MongoCollection<BasicDBObject> recipes = db.getCollection("recipes", BasicDBObject.class);
-        MongoCollection<BasicDBObject>  contains = db.getCollection("rcontains", BasicDBObject.class);
+        MongoCollection<Document> recipes = db.getCollection("recipes", Document.class);
+        MongoCollection<Document>  contains = db.getCollection("contains", Document.class);
 
-        BasicDBObject recipe = new BasicDBObject();
-        recipe.put( "name", name.getText().toString() );
-        recipe.put( "description", description.getText().toString() );
+        Document recipe = new Document()
+            .append( "name", name.getText().toString() )
+            .append( "description", description.getText().toString() )
+            .append( "instructions", instructions.getText().toString() );
 
-        BasicDBObject contain = new BasicDBObject();
+        recipes.insertOne(recipe);
 
+        id  = (ObjectId)recipe.get( "_id" );
+        Document contain = new Document();
+
+            for ( int i = 0; i <= numberOfIngreedients; i++) {
+
+                contain.append( "recipeId", id)
+                        .append( "ingredientId", ingredientIDs[i]);
+
+            }
 
         recipes.insertOne(recipe);
         contains.insertOne(contain);
@@ -122,7 +163,5 @@ public class AddRecipeActivity extends AppCompatActivity {
         desSave = this.description.getText().toString();
 
     }
-
-
 
 }
