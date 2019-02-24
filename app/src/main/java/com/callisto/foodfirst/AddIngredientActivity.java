@@ -1,9 +1,13 @@
 package com.callisto.foodfirst;
 
 import android.content.Intent;
+import android.provider.Settings;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,6 +22,9 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +35,6 @@ public class AddIngredientActivity extends AppCompatActivity {
     int position;
 
     public static ObjectId id;
-
-
 
     boolean gluten = false;
     boolean treeNut = false;
@@ -110,7 +115,12 @@ public class AddIngredientActivity extends AppCompatActivity {
             @Override
             public void onClick( View v ) {
                 addInformationToDatabase( v );
-                startActivity( new Intent( AddIngredientActivity.this, AddRecipeActivity.class));
+                Intent intent = new Intent(AddIngredientActivity.this, AddRecipeActivity.class);
+                Log.d("objectId", id.toString());
+                intent.putExtra("ID", id.toString());
+                Log.d("objectId", id.toString());
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -172,6 +182,7 @@ public class AddIngredientActivity extends AppCompatActivity {
         collection.insertOne(doc);
 
         id  = (ObjectId)doc.get( "_id" );
+
         mongoClient.close();
 
     }
