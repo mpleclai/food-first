@@ -24,6 +24,8 @@ public class AddRecipeActivity extends AppCompatActivity {
     private static String desSave;
     private static ObjectId id;
 
+    ObjectId myLocalID = AddIngredientActivity.id;
+
     EditText name;
     EditText description;
     EditText instructions;
